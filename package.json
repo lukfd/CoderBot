@@ -1,0 +1,29 @@
+{
+  "name": "coderbot",
+  "version": "1.0.0",
+  "description": "A discord bot for answering coding questions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukfd/CoderBot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "coding"
+  ],
+  "author": "Luca Comba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukfd/CoderBot/issues"
+  },
+  "homepage": "https://github.com/lukfd/CoderBot#readme",
+  "dependencies": {
+    "chromedriver": "^81.0.0",
+    "discord.js": "^12.2.0",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  }
+}
