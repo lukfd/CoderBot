@@ -22,8 +22,14 @@
   },
   "homepage": "https://github.com/lukfd/CoderBot#readme",
   "dependencies": {
+    "chai": "^4.2.0",
     "chromedriver": "^81.0.0",
     "discord.js": "^12.2.0",
-    "selenium-webdriver": "^4.0.0-alpha.7"
+    "mocha": "^7.1.2",
+    "newsapi": "^2.4.0",
+    "phantomjs": "^2.1.7",
+    "phantomjs-prebuilt": "^2.1.16",
+    "selenium-webdriver": "^4.0.0-alpha.7",
+    "webdriverjs": "^1.7.5"
   }
 }

@@ -1,10 +1,13 @@
 /*Luca Comba*/
 // configuration
-const { prefix, token } = require('./config.json');
+const { prefix, token, news_api_key } = require('./config.json');
 const { Builder, By, Key, until } = require('selenium-webdriver');
+require('phantomJS');
 // require the discord.js module
 const Discord = require('discord.js');
-
+// news api
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI(news_api_key);
 // create a new Discord client
 const client = new Discord.Client();
 
@@ -13,7 +16,6 @@ const client = new Discord.Client();
 client.once('ready', () => {
 	console.log('Ready!');
 });
-
 
 /*HELP EMBEEMD MESSAGE*/
 const exampleEmbed = new Discord.MessageEmbed()
@@ -56,10 +58,10 @@ client.on('message', message => {
 				chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
 
 
-			    //let driver = await new Builder().forBrowser('chrome').build();
-			    var driver = new webdriver.Builder()
-                 .withCapabilities(webdriver.Capabilities.chrome())
-                 .build();
+			    let driver = await new Builder().forBrowser('chrome')
+                .withCapabilities(webdriver.Capabilities.chrome())
+                //.setChromeOptions(new chrome.Options().headless())
+                .build();
 			    try {
 			        // Navigate to Url
 			        await driver.get('https://www.stackoverflow.com');
@@ -73,12 +75,24 @@ client.on('message', message => {
 
 					var answer = await driver.findElement(By.xpath("//div[@class='answercell post-layout--right']"), 10000).getText().then( (text) => {
 						// check for code
-
-						// getting rid of share and follow
-						var patt = /(share\nfollow|share follow)/g;
-						arr = text.split(patt);
-						var trimmed = arr[0];
-						message.channel.send("```"+trimmed+"```");
+						if (text.length > 2000) {
+							var int = text.length/1993;
+							for (var i = 0; i < int; i++) {
+								var lessText = text.substring(0,1993);
+								text = text.substring(1993);
+								// getting rid of share and follow
+								var patt = /(share\nimprove|share follow)/g;
+								arr = lessText.split(patt);
+								var trimmed = arr[0];
+								message.channel.send("```"+trimmed+"```");
+							}
+						} else {
+							// getting rid of share and follow
+							var patt = /(share\nimprove|share follow)/g;
+							arr = text.split(patt);
+							var trimmed = arr[0];
+							message.channel.send("```"+trimmed+"```");
+						}
 					});
 
 			    } finally{
@@ -88,7 +102,31 @@ client.on('message', message => {
 		}
 	} else if (command === 'news') {
 		// RETURN TODAYS NEWS
-		message.channel.send("NEWs");
+		
+		newsapi.v2.topHeadlines({
+			language: 'en',
+			country: 'us',
+			category: 'general'
+		}).then(response => {
+			var text = response.articles
+			var toRet = '';
+			console.log(response.articles[0]);
+
+			for (var i = 0; i < text.length; i++) {
+				// should do this better!
+
+				// if (toRet.length > 1500) {
+				// 	message.channel.send(toRet);
+				// 	toRet = '';
+				// } else {
+				// 	// toRet = toRet + text[i].title + '\n' 
+				// 	// + text[i].description + '\n' 
+				// 	// + 'READ IT AT:' + text[i].url + '\n'
+				// 	toRet = toRet + text[i].url + '\n';
+				// }
+				message.channel.send(text[i].url);
+			}
+		});
 	}
 
 });
