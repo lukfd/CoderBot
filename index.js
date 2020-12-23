@@ -4,8 +4,8 @@ const { prefix, token, news_api_key } = require('./config.json');
 // require the discord.js module
 const Discord = require('discord.js');
 // news api
-const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI(news_api_key);
+//const NewsAPI = require('newsapi');
+//const newsapi = new NewsAPI(news_api_key);
 // axios
 const axios = require('axios')
 
@@ -113,7 +113,7 @@ client.on('message', message => {
 			});
 			
 		}
-	} else if (command === 'news') {
+	} /* else if (command === 'news') {
 		// RETURN TODAYS NEWS
 		
 		newsapi.v2.topHeadlines({
@@ -140,7 +140,7 @@ client.on('message', message => {
 				message.channel.send(result[i].url);
 			}
 		});
-	}
+	} */
 
 });
 
