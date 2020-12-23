@@ -1,5 +1,5 @@
 # CoderBot
-Discord bot that help you code!
+Discord bot that help you code! or just search the internet (possibly)
 
 # Commands
 
