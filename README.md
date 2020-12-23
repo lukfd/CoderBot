@@ -1,11 +1,15 @@
 # CoderBot
-Discord bot that help you code! or just search the internet (possibly)
+Discord bot that help you code!
+
+The CoderBot will answer all the coding questions that you might encounter. If you are chatting in a discord server, and you might need some help, you can quickly ask the CoderBot to look for the answer on [https://stackoverflow.com](https://stackoverflow.com).
 
 # Commands
 
+Here are the main commands for the bot:
+
 - `?help` TO GET INFORMATION ON THE BOT
 
-- `? question` FOR ASKING THE CODING QUESTION
+- `? question` FOR ASKING THE CODING QUESTION (The question can be anything)
 
 - `?news` FOR GETTING TODAYS NEWS
 
