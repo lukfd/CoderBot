@@ -1,6 +1,8 @@
 /*Luca Comba*/
 // configuration
-const { prefix, token, news_api_key } = require('./config.json');
+//const { prefix, token, news_api_key } = require('./config.json');
+const prefix = "?";
+
 // require the discord.js module
 const Discord = require('discord.js');
 // news api
@@ -145,4 +147,4 @@ client.on('message', message => {
 });
 
 // login to Discord with your app's token
-client.login(token);
+client.login(process.env.DISCORD_TOKEN);
